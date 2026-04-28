@@ -32,9 +32,44 @@ function App() {
     setBadge("");
   };
 
+  const applyPreset = (
+    selectedMake: string,
+    selectedModel: string,
+    selectedBadge: string
+  ) => {
+    setMake(selectedMake);
+    setModel(selectedModel);
+    setBadge(selectedBadge);
+  };
+
   return (
-    <div style={{ padding: "2rem", fontFamily: "Arial", maxWidth: "500px" }}>
+    <div
+      style={{
+        padding: "2rem",
+        fontFamily: "Arial",
+        maxWidth: "600px",
+        margin: "0 auto"
+      }}
+    >
       <h1>Vehicle Selection Form</h1>
+
+      <div style={{ marginBottom: "1.5rem" }}>
+        <p><strong>Quick Select</strong></p>
+
+        <button
+          onClick={() => applyPreset("Tesla", "Model 3", "Performance")}
+          style={{ marginRight: "10px", padding: "8px 12px" }}
+        >
+          Tesla Model 3 Performance
+        </button>
+
+        <button
+          onClick={() => applyPreset("BMW", "130d", "xDrive 26d")}
+          style={{ padding: "8px 12px" }}
+        >
+          BMW 130d xDrive 26d
+        </button>
+      </div>
 
       <div style={{ marginBottom: "1rem" }}>
         <label>Make</label>
@@ -86,9 +121,18 @@ function App() {
         </select>
       </div>
 
-      <pre>
-{JSON.stringify({ make, model, badge }, null, 2)}
-      </pre>
+      <div
+        style={{
+          background: "#f5f5f5",
+          padding: "1rem",
+          borderRadius: "8px",
+          marginTop: "1rem"
+        }}
+      >
+        <strong>Current Selection</strong>
+
+        <pre>{JSON.stringify({ make, model, badge }, null, 2)}</pre>
+      </div>
     </div>
   );
 }
