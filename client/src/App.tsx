@@ -7,6 +7,8 @@ function App() {
   const [badge, setBadge] = useState("");
   const [file, setFile] = useState<File | null>(null);
   const [response, setResponse] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const makes = Object.keys(VEHICLES);
 
@@ -47,25 +49,43 @@ function App() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const formData = new FormData();
+    if (!isFormValid || loading) return;
 
-    formData.append("make", make);
-    formData.append("model", model);
-    formData.append("badge", badge);
+    try {
+      setLoading(true);
+      setError("");
+      setResponse("");
 
-    if (file) {
-      formData.append("logbook", file);
+      const formData = new FormData();
+
+      formData.append("make", make);
+      formData.append("model", model);
+      formData.append("badge", badge);
+
+      if (file) {
+        formData.append("logbook", file);
+      }
+
+      const res = await fetch("http://localhost:5000/api/vehicle", {
+        method: "POST",
+        body: formData
+      });
+
+      if (!res.ok) {
+        throw new Error("Submission failed");
+      }
+
+      const data = await res.json();
+
+      setResponse(JSON.stringify(data, null, 2));
+    } catch {
+      setError("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
     }
-
-    const res = await fetch("http://localhost:5000/api/vehicle", {
-      method: "POST",
-      body: formData
-    });
-
-    const data = await res.json();
-
-    setResponse(JSON.stringify(data, null, 2));
   };
+
+  const isFormValid = Boolean(make && model && badge && file);
 
   return (
     <div
@@ -166,9 +186,29 @@ function App() {
             />
           </FormField>
 
-          <button type="submit" style={primaryButton}>
-            Submit
+          {!isFormValid && (
+            <p style={{ fontSize: "13px", color: "#666" }}>
+              Please select make, model, badge and upload logbook.
+            </p>
+          )}
+
+          <button
+            type="submit"
+            disabled={!isFormValid || loading}
+            style={{
+              ...primaryButton,
+              opacity: !isFormValid || loading ? 0.6 : 1,
+              cursor: !isFormValid || loading ? "not-allowed" : "pointer"
+            }}
+          >
+            {loading ? "Submitting..." : "Submit"}
           </button>
+
+          {error && (
+            <p style={{ color: "red", marginTop: "12px" }}>
+              {error}
+            </p>
+          )}
         </form>
 
         <div
