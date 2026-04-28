@@ -1,0 +1,16 @@
+.card {
+  margin-top: 20px;
+  padding: 14px;
+  background: #eef6ff;
+  border-radius: 10px;
+}
+
+.title {
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.content {
+  white-space: pre-wrap;
+  font-size: 14px;
+}
