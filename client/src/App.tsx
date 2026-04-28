@@ -6,6 +6,7 @@ function App() {
   const [model, setModel] = useState("");
   const [badge, setBadge] = useState("");
   const [file, setFile] = useState<File | null>(null);
+  const [response, setResponse] = useState("");
 
   const makes = Object.keys(VEHICLES);
 
@@ -43,10 +44,27 @@ function App() {
     setBadge(selectedBadge);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    alert("Frontend submit ready. API integration in next phase.");
+    const formData = new FormData();
+
+    formData.append("make", make);
+    formData.append("model", model);
+    formData.append("badge", badge);
+
+    if (file) {
+      formData.append("logbook", file);
+    }
+
+    const res = await fetch("http://localhost:5000/api/vehicle", {
+      method: "POST",
+      body: formData
+    });
+
+    const data = await res.json();
+
+    setResponse(JSON.stringify(data, null, 2));
   };
 
   return (
@@ -177,6 +195,20 @@ function App() {
           </pre>
         </div>
       </div>
+
+      {response && (
+        <div
+          style={{
+            marginTop: "20px",
+            background: "#eef6ff",
+            padding: "12px",
+            borderRadius: "8px"
+          }}
+        >
+          <strong>Server Response</strong>
+          <pre>{response}</pre>
+        </div>
+      )}
     </div>
   );
 }
