@@ -6,13 +6,8 @@ function App() {
     <div className={styles.page}>
       <div className={styles.card}>
         <h1 className={styles.title}>
-          Vehicle Selection Form
+          Drill Down Form
         </h1>
-
-        <p className={styles.subtitle}>
-          Select a vehicle and upload service logbook.
-        </p>
-
         <VehicleForm />
       </div>
     </div>

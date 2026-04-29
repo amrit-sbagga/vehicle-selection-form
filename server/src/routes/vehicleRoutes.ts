@@ -5,7 +5,7 @@ import { submitVehicle } from "../controllers/vehicleController";
 const router = Router();
 
 router.post(
-  "/vehicle",
+  "/upload",
   upload.single("logbook"),
   submitVehicle
 );

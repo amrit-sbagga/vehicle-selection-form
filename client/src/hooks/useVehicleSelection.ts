@@ -1,30 +1,42 @@
 import { useMemo, useState } from "react";
-import { VEHICLES } from "../data/vehicles";
+import { VEHICLE_DATA } from '../data/vehicles';
 
-function useVehicleSelection() {
-  const [make, setMake] = useState("");
+/* TYPES */
+type VehicleData = typeof VEHICLE_DATA;
+type Make = keyof VehicleData;
+
+export default function useVehicleSelection() {
+  const [make, setMake] = useState<Make | "">("");
   const [model, setModel] = useState("");
   const [badge, setBadge] = useState("");
 
-  const makes = Object.keys(VEHICLES);
+  const makes = Object.keys(
+    VEHICLE_DATA
+  ) as Make[];
 
   const models = useMemo(() => {
     if (!make) return [];
+
     return Object.keys(
-      VEHICLES[make as keyof typeof VEHICLES]
+      VEHICLE_DATA[make]
     );
   }, [make]);
 
   const badges = useMemo(() => {
     if (!make || !model) return [];
 
-    return VEHICLES[make as keyof typeof VEHICLES][
-      model as keyof (typeof VEHICLES)[keyof typeof VEHICLES]
-    ];
+    const selectedModels =
+      VEHICLE_DATA[make];
+
+    return (
+      selectedModels[
+        model as keyof typeof selectedModels
+      ] || []
+    );
   }, [make, model]);
 
   const selectMake = (value: string) => {
-    setMake(value);
+    setMake(value as Make);
     setModel("");
     setBadge("");
   };
@@ -39,13 +51,13 @@ function useVehicleSelection() {
   };
 
   const applyPreset = (
-    selectedMake: string,
-    selectedModel: string,
-    selectedBadge: string
+    makeVal: string,
+    modelVal: string,
+    badgeVal: string
   ) => {
-    setMake(selectedMake);
-    setModel(selectedModel);
-    setBadge(selectedBadge);
+    setMake(makeVal as Make);
+    setModel(modelVal);
+    setBadge(badgeVal);
   };
 
   return {
@@ -61,5 +73,3 @@ function useVehicleSelection() {
     applyPreset
   };
 }
-
-export default useVehicleSelection;
