@@ -2,13 +2,12 @@
 node_modules/
 client/node_modules/
 server/node_modules/
-dist/
-client/dist/
-server/dist/
 
-# build output
-dist/
-build/
+# build output 
+dist/ 
+build/ 
+client/dist/ 
+server/dist/
 
 # logs
 npm-debug.log*
