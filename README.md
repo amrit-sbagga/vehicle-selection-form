@@ -56,20 +56,32 @@ The app allows users to progressively select a vehicle (Make → Model → Badge
 ## Project Structure
 
 ```text
+## Project Structure
+
+```text
 vehicle-selection-form/
 ├── client/
 │   ├── src/
+│   │   ├── components/
+│   │   ├── hooks/
+│   │   ├── data/
+│   │   ├── App.tsx
+│   │   └── main.tsx
 │   └── package.json
 │
 ├── server/
 │   ├── src/
-│   ├── tests/
+│   │   ├── controllers/
+│   │   ├── middleware/
+│   │   ├── routes/
+│   │   ├── validation/
+│   │   ├── tests/
+│   │   ├── app.ts
+│   │   └── index.ts
 │   └── package.json
 │
 └── README.md
 ```
-
----
 
 ## Getting Started
 
@@ -173,6 +185,7 @@ Accepts:
 * `logbook` (`.txt` file)
 
 ---
+
 
 ## Author
 
