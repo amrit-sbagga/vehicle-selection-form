@@ -1,6 +1,15 @@
 import { Request, Response } from "express";
 import { vehicleSchema } from "../validation/vehicleSchema";
 
+function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
 export const submitVehicle = (
   req: Request,
   res: Response
@@ -67,20 +76,20 @@ export const submitVehicle = (
         <h2>Vehicle Details</h2>
 
         <div class="section">
-          <strong>Make:</strong> ${make}
+          <strong>Make:</strong> ${escapeHtml(make)}
         </div>
 
         <div class="section">
-          <strong>Model:</strong> ${model}
+          <strong>Model:</strong> ${escapeHtml(model)}
         </div>
 
         <div class="section">
-          <strong>Badge:</strong> ${badge}
+          <strong>Badge:</strong> ${escapeHtml(badge)}
         </div>
 
         <h2>Logbook</h2>
 
-        <pre>${logbook}</pre>
+        <pre>${escapeHtml(logbook)}</pre>
       </body>
     </html>
   `);
