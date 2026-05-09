@@ -56,9 +56,6 @@ The app allows users to progressively select a vehicle (Make → Model → Badge
 ## Project Structure
 
 ```text
-## Project Structure
-
-```text
 vehicle-selection-form/
 ├── client/
 │   ├── src/
@@ -87,24 +84,18 @@ vehicle-selection-form/
 
 ## 1. Install Dependencies
 
-### Root
+From root (installs all dependencies at once):
 
 ```bash
-npm install
+npm run install:all
 ```
 
-### Client
+Or install each separately:
 
 ```bash
-cd client
 npm install
-```
-
-### Server
-
-```bash
-cd server
-npm install
+cd client && npm install
+cd ../server && npm install
 ```
 
 ---
