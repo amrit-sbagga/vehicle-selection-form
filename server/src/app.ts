@@ -1,4 +1,4 @@
-import express from "express";
+import express, { NextFunction, Request, Response } from "express";
 import cors from "cors";
 import vehicleRoutes from "./routes/vehicleRoutes";
 
@@ -14,5 +14,10 @@ app.get("/", (_, res) => {
 });
 
 app.use("/api", vehicleRoutes);
+
+app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {
+  console.error(err.stack);
+  res.status(500).send("<h2>Internal Server Error</h2><p>Something went wrong.</p>");
+});
 
 export default app;
