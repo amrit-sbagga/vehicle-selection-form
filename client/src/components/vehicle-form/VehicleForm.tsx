@@ -40,7 +40,7 @@ function VehicleForm() {
   return (
     <>
       <form
-        action="http://localhost:5000/api/upload"
+        action={import.meta.env.VITE_API_URL ?? "/api/upload"}
         method="POST"
         encType="multipart/form-data"
       >
