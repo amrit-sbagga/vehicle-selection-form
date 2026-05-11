@@ -51,4 +51,42 @@ describe("Server API", () => {
     });
     expect(res.body.fieldErrors).toBeDefined();
   });
+
+  it("POST /api/upload succeeds without a file and uses placeholder logbook", async () => {
+    const res = await request(app)
+      .post("/api/upload")
+      .field("make", "BMW")
+      .field("model", "130d")
+      .field("badge", "xDrive 26d");
+
+    expect(res.status).toBe(200);
+    expect(res.body).toMatchObject({
+      make: "BMW",
+      model: "130d",
+      badge: "xDrive 26d",
+      logbook: "No logbook uploaded",
+    });
+  });
+
+  it("POST /api/upload rejects non-plain-text uploads", async () => {
+    const res = await request(app)
+      .post("/api/upload")
+      .field("make", "BMW")
+      .field("model", "130d")
+      .field("badge", "xDrive 26d")
+      .attach(
+        "logbook",
+        Buffer.from([0x89, 0x50, 0x4e, 0x47]),
+        {
+          filename: "image.png",
+          contentType: "image/png",
+        }
+      );
+
+    expect(res.status).toBe(400);
+    expect(res.body).toMatchObject({
+      error: "upload_failed",
+    });
+    expect(typeof res.body.message).toBe("string");
+  });
 });
