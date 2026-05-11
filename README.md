@@ -100,6 +100,34 @@ cd ../server && npm install
 
 ---
 
+## Environment variables
+
+Use **local env files** for ports and URLs (not committed). Copy the examples:
+
+**Server** (`server/`):
+
+```bash
+cp server/.env.example server/.env
+```
+
+| Variable | Purpose |
+|----------|---------|
+| `PORT` | Port Express listens on (optional; defaults to `5000` in code if unset) |
+| `CLIENT_ORIGIN` | Browser origin allowed by CORS (optional; defaults to `http://localhost:5173` if unset) |
+
+**Client** (`client/`):
+
+```bash
+cp client/.env.example client/.env.local
+```
+
+| Variable | Purpose |
+|----------|---------|
+| `VITE_API_URL` | Form `action` URL (e.g. `/api/upload` in dev so Vite proxies to the API) |
+| `VITE_DEV_API_ORIGIN` | Backend base URL for the Vite dev proxy in `vite.config.ts` |
+
+---
+
 ## Run Application
 
 From root:
