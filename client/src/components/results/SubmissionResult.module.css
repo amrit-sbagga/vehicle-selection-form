@@ -1,0 +1,51 @@
+.wrapper {
+  margin-top: 1.25rem;
+  padding: 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: #fafafa;
+}
+
+.title {
+  margin: 0 0 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.row {
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: #374151;
+}
+
+.label {
+  font-weight: 600;
+  color: #111827;
+}
+
+.logbook {
+  margin: 0.75rem 0 0;
+  padding: 0.75rem;
+  background: #f3f4f6;
+  border-radius: 6px;
+  font-size: 0.8125rem;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.dismiss {
+  margin-top: 0.75rem;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.8125rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background: white;
+  cursor: pointer;
+  color: #374151;
+}
+
+.dismiss:hover {
+  background: #f9fafb;
+}

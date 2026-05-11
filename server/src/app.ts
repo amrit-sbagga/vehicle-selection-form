@@ -19,7 +19,10 @@ app.use("/api", vehicleRoutes);
 
 app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {
   console.error(err.stack);
-  res.status(500).send("<h2>Internal Server Error</h2><p>Something went wrong.</p>");
+  res.status(500).json({
+    error: "internal_server_error",
+    message: "Something went wrong.",
+  });
 });
 
 export default app;

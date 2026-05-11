@@ -1,18 +1,5 @@
 import SelectField from "./fields/SelectField";
-
-type Props = {
-  make: string;
-  model: string;
-  badge: string;
-  makes: string[];
-  models: string[];
-  badges: string[];
-  selectMake: (v: string) => void;
-  selectModel: (v: string) => void;
-  selectBadge: (v: string) => void;
-  showModel: boolean;
-  showBadge: boolean;
-};
+import type { VehicleFormFieldsProps } from "../../../types/vehicleFormFields";
 
 function VehicleFormFields({
   make,
@@ -26,7 +13,7 @@ function VehicleFormFields({
   selectBadge,
   showModel,
   showBadge
-}: Props) {
+}: VehicleFormFieldsProps) {
   return (
     <>
       <SelectField

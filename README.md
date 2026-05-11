@@ -25,7 +25,7 @@ The app allows users to progressively select a vehicle (Make → Model → Badge
 * Express API with file upload support using Multer
 * Server-side request validation using Zod
 * Reads uploaded `.txt` logbook file
-* Returns formatted response page with selected vehicle details and uploaded logbook contents
+* Returns JSON with selected vehicle details and uploaded logbook text; the client renders the result
 * Automated API tests using Vitest + Supertest
 
 ---
@@ -218,6 +218,8 @@ Accepts:
 * `model`
 * `badge`
 * `logbook` (`.txt` file)
+
+**Response:** `200` with JSON `{ "make", "model", "badge", "logbook" }`. Validation failures return `400` with JSON `{ "error": "validation_failed", "fieldErrors": { ... } }`.
 
 ---
 

@@ -10,10 +10,16 @@ router.post(
   (req: Request, res: Response, next: NextFunction) => {
     upload.single("logbook")(req, res, (err) => {
       if (err instanceof multer.MulterError) {
-        return res.status(400).send(`<h2>Upload Error</h2><p>${err.message}</p>`);
+        return res.status(400).json({
+          error: "upload_failed",
+          message: err.message,
+        });
       }
       if (err instanceof Error) {
-        return res.status(400).send(`<h2>Upload Error</h2><p>${err.message}</p>`);
+        return res.status(400).json({
+          error: "upload_failed",
+          message: err.message,
+        });
       }
       next();
     });

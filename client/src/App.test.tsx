@@ -1,10 +1,19 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { MemoryRouter } from "react-router-dom";
 import App from "./App";
+
+function renderApp(initialPath = "/") {
+  return render(
+    <MemoryRouter initialEntries={[initialPath]}>
+      <App />
+    </MemoryRouter>
+  );
+}
 
 describe("Drill Down Form", () => {
   test("renders page title", () => {
-    render(<App />);
+    renderApp();
 
     expect(
       screen.getByText(/drill down form/i)
@@ -12,7 +21,7 @@ describe("Drill Down Form", () => {
   });
 
   test("only make dropdown visible initially", () => {
-    render(<App />);
+    renderApp();
 
     const selects =
       screen.getAllByRole("combobox");
@@ -25,7 +34,7 @@ describe("Drill Down Form", () => {
   });
 
   test("selecting make shows model dropdown", async () => {
-    render(<App />);
+    renderApp();
 
     const user = userEvent.setup();
 
@@ -44,7 +53,7 @@ describe("Drill Down Form", () => {
   });
 
   test("selecting make + model shows badge dropdown", async () => {
-    render(<App />);
+    renderApp();
 
     const user = userEvent.setup();
 
@@ -71,7 +80,7 @@ describe("Drill Down Form", () => {
   });
 
   test("submit button hidden initially", () => {
-    render(<App />);
+    renderApp();
 
     expect(
       screen.queryByRole("button", {

@@ -1,5 +1,5 @@
 import request from "supertest";
-import app from '../app';
+import app from "../app";
 import { describe, it, expect } from "vitest";
 
 describe("Server API", () => {
@@ -28,13 +28,14 @@ describe("Server API", () => {
       );
 
     expect(res.status).toBe(200);
+    expect(res.headers["content-type"]).toMatch(/json/);
 
-    expect(res.text).toContain("BMW");
-    expect(res.text).toContain("130d");
-    expect(res.text).toContain("xDrive 26d");
-    expect(res.text).toContain(
-      "Initial Service"
-    );
+    expect(res.body).toMatchObject({
+      make: "BMW",
+      model: "130d",
+      badge: "xDrive 26d",
+      logbook: "2024/01/01: Initial Service"
+    });
   });
 
   it("POST /api/upload should fail validation", async () => {
@@ -45,9 +46,9 @@ describe("Server API", () => {
       .field("badge", "xDrive 26d");
 
     expect(res.status).toBe(400);
-
-    expect(res.text).toContain(
-      "Validation Error"
-    );
+    expect(res.body).toMatchObject({
+      error: "validation_failed"
+    });
+    expect(res.body.fieldErrors).toBeDefined();
   });
 });
