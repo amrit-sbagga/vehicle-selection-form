@@ -1,7 +1,14 @@
 form {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 10px;
+}
+
+.uploadSection {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 4px;
 }
 
 .helper {
@@ -10,18 +17,31 @@ form {
 }
 
 .button {
-  padding: 6px 14px;
+  padding: 10px 16px;
+  min-height: 44px;
   border: 1px solid #d1d5db;
-  background: white;
-  border-radius: 6px;
+  background: #ffffff;
+  border-radius: 8px;
   cursor: pointer;
   color: #111827;
-  display: flex;
-  margin-top: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 4px;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  align-self: flex-start;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
 }
 
-.button:hover {
+.button:hover:not(:disabled) {
   background: #f9fafb;
+  border-color: #9ca3af;
+}
+
+.button:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
 }
 
 .button:disabled {
@@ -30,7 +50,22 @@ form {
   pointer-events: none;
 }
 
+@media (max-width: 480px) {
+  .button {
+    align-self: stretch;
+  }
+}
+
 .error {
-  color: red;
-  font-size: 12px;
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #fecaca;
+  background: #fef2f2;
+  color: #b91c1c;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-wrap: anywhere;
 }
