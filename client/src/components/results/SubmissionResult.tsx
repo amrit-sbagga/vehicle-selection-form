@@ -1,12 +1,7 @@
-import type { VehicleUploadSuccess } from "../../types/vehicle";
+import type { SubmissionResultProps } from "../../types";
 import styles from "./SubmissionResult.module.css";
 
-type Props = {
-  data: VehicleUploadSuccess;
-  onDismiss: () => void;
-};
-
-function SubmissionResult({ data, onDismiss }: Props) {
+function SubmissionResult({ data, onDismiss }: SubmissionResultProps) {
   return (
     <section className={styles.wrapper} aria-live="polite">
       <h2 className={styles.title}>Submission result</h2>

@@ -1,4 +1,4 @@
-import type { VehicleUploadSuccess } from "../types/vehicle";
+import type { VehicleUploadSuccess } from "../types";
 
 export const VEHICLE_UPLOAD_RESULT_KEY = "vehicleUploadResult";
 

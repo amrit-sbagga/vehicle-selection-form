@@ -1,12 +1,5 @@
+import type { SelectFieldProps } from "../../../../types";
 import styles from "./SelectField.module.css";
-
-type Props = {
-    label: string;
-    name: string;
-    value: string;
-    options: string[];
-    onChange: (value: string) => void;
-};
 
 function SelectField({
     label,
@@ -14,7 +7,7 @@ function SelectField({
     value,
     options,
     onChange
-}: Props) {
+}: SelectFieldProps) {
     return (
         <div className={styles.field}>
             <label className={styles.label}>{label}</label>

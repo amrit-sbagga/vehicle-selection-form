@@ -1,11 +1,8 @@
+import type { FileUploadFieldProps } from "../../../../types";
 import styles from "./FileUploadField.module.css";
 import { useRef, useState } from "react";
 
-type Props = {
-  onChange: (file: File | null) => void;
-};
-
-function FileUploadField({ onChange }: Props) {
+function FileUploadField({ onChange }: FileUploadFieldProps) {
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [fileName, setFileName] = useState("");
 

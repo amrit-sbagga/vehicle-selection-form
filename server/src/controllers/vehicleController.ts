@@ -3,7 +3,7 @@ import { vehicleSchema } from "../validation/vehicleSchema";
 import type {
   VehicleUploadSuccess,
   VehicleValidationErrorBody,
-} from "../types/vehicle";
+} from "../types";
 
 export const submitVehicle = (
   req: Request,

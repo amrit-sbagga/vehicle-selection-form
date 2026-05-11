@@ -1,7 +1,7 @@
 import { FormEvent, useState } from "react";
 import useVehicleSelection from "../../hooks/useVehicleSelection";
 import { getVehicleUploadEndpoint } from "../../config/uploadEndpoint";
-import type { VehicleValidationErrorBody } from "../../types/vehicle";
+import type { VehicleValidationErrorBody } from "../../types";
 
 import QuickSelect from "../quick-select/QuickSelect";
 import VehicleFormFields from "./form/VehicleFormFields";

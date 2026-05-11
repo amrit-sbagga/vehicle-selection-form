@@ -1,18 +1,15 @@
 import { useMemo, useState } from "react";
-import { VEHICLE_DATA } from '../data/vehicles';
-
-/* TYPES */
-type VehicleData = typeof VEHICLE_DATA;
-type Make = keyof VehicleData;
+import { VEHICLE_DATA } from "../data/vehicles";
+import type { VehicleMake } from "../types";
 
 export default function useVehicleSelection() {
-  const [make, setMake] = useState<Make | "">("");
+  const [make, setMake] = useState<VehicleMake | "">("");
   const [model, setModel] = useState("");
   const [badge, setBadge] = useState("");
 
   const makes = Object.keys(
     VEHICLE_DATA
-  ) as Make[];
+  ) as VehicleMake[];
 
   const models = useMemo(() => {
     if (!make) return [];
@@ -36,7 +33,7 @@ export default function useVehicleSelection() {
   }, [make, model]);
 
   const selectMake = (value: string) => {
-    setMake(value as Make);
+    setMake(value as VehicleMake);
     setModel("");
     setBadge("");
   };
@@ -55,7 +52,7 @@ export default function useVehicleSelection() {
     modelVal: string,
     badgeVal: string
   ) => {
-    setMake(makeVal as Make);
+    setMake(makeVal as VehicleMake);
     setModel(modelVal);
     setBadge(badgeVal);
   };

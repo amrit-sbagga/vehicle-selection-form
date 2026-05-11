@@ -1,5 +1,5 @@
 import SelectField from "./fields/SelectField";
-import type { VehicleFormFieldsProps } from "../../../types/vehicleFormFields";
+import type { VehicleFormFieldsProps } from "../../../types";
 
 function VehicleFormFields({
   make,

@@ -1,10 +1,7 @@
+import type { QuickSelectProps } from "../../types";
 import styles from "./QuickSelect.module.css";
 
-type Props = {
-  onSelect: (make: string, model: string, badge: string) => void;
-};
-
-function QuickSelect({ onSelect }: Props) {
+function QuickSelect({ onSelect }: QuickSelectProps) {
   return (
     <div className={styles.wrapper}>
       <p className={styles.title}>Select a Vehicle</p>
