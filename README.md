@@ -160,6 +160,22 @@ npm run build
 
 ---
 
+## Build Backend
+
+```bash
+cd server
+npm run build
+```
+
+Produces compiled JavaScript in `server/dist/`. Run the compiled server with:
+
+```bash
+cd server
+npm start
+```
+
+---
+
 ## API Endpoint
 
 ### Submit Vehicle Form
